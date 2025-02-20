@@ -38,15 +38,18 @@ public class ArticleController {
     }
 
     @PostMapping("/articles/create")
-    public String createArticle(ArticleDto dto){
-        log.info(dto.toString());
-
-        Article article = dto.toEntity();
+    public String createArticle(ArticleDto form){
+        //System.out.println("dto : "+form.toString()); -> 로깅 기능으로 대체
+        log.info(form.toString());
+        //1. Dto를 변환 Entity!
+        Article article = form.toEntity();
+        //System.out.println("entity로 변환 : "+article.toString());
         log.info(article.toString());
+        //2. Repository에게 Entity를 DB안에 저장하게 함!
         Article saved = articleRepository.save(article);
+        // System.out.println("db에 저장 : "+saved.toString());
         log.info(saved.toString());
-
-        return "redirect:/articles/"+saved.getId();
+        return "redirect:/articles/"+ saved.getId();
     }
     @GetMapping("/articles/{id}") // 해당 URL요청을 처리 선언
     public String show(@PathVariable Long id,

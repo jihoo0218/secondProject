@@ -1,7 +1,8 @@
 package com.example.secondproject.entity;
 
-import jakarta.persistence.*;
 import lombok.*;
+
+import javax.persistence.*;
 
 @Entity
 @AllArgsConstructor
@@ -11,7 +12,7 @@ import lombok.*;
 @Setter
 public class Article {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     private String title;
